@@ -71,6 +71,17 @@ Public Class frmProcessTask
         hoursWorked = Math.Floor(elapsed.TotalHours)
         minutesWorked = elapsed.Minutes
 
+        If (hoursWorked = 24) Then
+            daysWorked = 1
+            hoursWorked = 0
+            minutesWorked = elapsed.Minutes
+        ElseIf (hoursWorked > 24) Then
+            daysWorked = (hoursWorked / 24)
+            hoursWorked = (hoursWorked Mod 24)
+            minutesWorked = elapsed.Minutes
+        End If
+
+
         Try
             Dim data As New Dictionary(Of String, Object)
             data.Add("@TaskID", GlobalVariables.selectedTaskId)
